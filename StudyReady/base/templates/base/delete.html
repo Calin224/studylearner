@@ -1,0 +1,29 @@
+
+ {% extends 'main.html' %}
+
+{% block content %}
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center">
+        <div class="container-fluid mt-5">
+            <span action="" class="d-flex justify-content-center">
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-2" style=" color: var(--color-intense);">Sterge Postarea</span>
+                    </div>
+                    <div class="card-body ">
+                        <form action="" method="post">
+						    {% csrf_token %}
+                                <p style="color: var(--color-intense)">Esti sigur ca vrei sa stergi postarea? </p> 
+                                <input type="submit" value="Sterge" class="btn btn-outline-light" />
+                                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">Inapoi</a>
+						</form>
+                        <br>
+                    </div>
+                </div>
+
+            </span>
+        </div>
+    </main>
+{% endblock content %}

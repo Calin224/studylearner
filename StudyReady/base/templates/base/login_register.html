@@ -1,0 +1,134 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if page == 'login' %}
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center">
+        <div class="container-fluid mt-5">
+            <form action="" class="d-flex justify-content-center" method="post">
+                {% csrf_token %}
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-2" style=" color: var(--color-intense);">Accesare Cont</span>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="" method="post">
+
+                            <label for="username" style="font-weight: 400; color: var(--color-light);" class="mb-1">Email</label>
+                            <input type="text" name="email" placeholder="username..." class="form-control mb-5"
+                                id="username--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <label for="password" style="font-weight: 400; color: var(--color-light);" class="mb-1">Password</label>
+                            <input type="password" name="password" placeholder="password..." class="form-control "
+                                id="password--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <input type="submit" value="Submit" class="btn mt-4 btn-outline-light ">
+
+                        </form>
+                        <br>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="row text-center">
+                                    <span class="fs-6" style="color: var(--color-intense);">Nu ai un cont?</span>
+                                </div>
+                                <div class="row text-center">
+                                    <a href="{% url 'register' %}" style="text-decoration:none; color: #ccc;"><span class="fs-3" >Sign Up</span></a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+{% else %}
+<style>
+    #form_update>input{
+            color: var(--color-intense);
+            background: transparent;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #form_update>select{
+            color: var(--color-intense);
+            background: transparent;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #form_update>textarea{
+            color: var(--color-intense);
+            background: var(--color-darker);
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+        }
+</style>
+
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center mb-4">
+        <div class="container-fluid mt-2">
+            {% if messages %}
+            <div class="alert alert-success messages" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+            </div>
+            {% endif %}
+            <span action="" class="d-flex justify-content-center">
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-2" style=" color: var(--color-intense);">Creare Cont</span>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="" method="POST">
+
+                            {% csrf_token %}
+
+                            {% for field in form %}
+                            <div class="mb-4" id="form_update">
+                                <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">{{field.label}}</label>
+                                {{field}}
+                            </div>
+                            {% endfor %}
+
+                            <input type="submit" value="Submit" class="btn mt-4 btn-outline-light ">
+
+                        </form>
+                        <br>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="row text-center">
+                                    <span class="fs-6" style="color: var(--color-intense);">Ai deja un cont?</span>
+                                </div>
+                                <div class="row text-center">
+                                    <a href="{% url 'login' %}" style="text-decoration:none; color: #ccc;"><span class="fs-3" >Sign In</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </span>
+        </div>
+    </main>
+{% endif %}
+
+{% endblock content %}

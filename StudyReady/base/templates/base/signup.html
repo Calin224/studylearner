@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Home</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/js/bootstrap.min.js"
+		integrity="sha512-HSNvqjhsAxRPvbSBEdXWlkR9uYmJtUvXEyfAvUzlA0uS5SyFZMZdczgz8oPWTz2NUEBaXkIYL4kdrBJkP66jYA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/css/bootstrap.rtl.min.css"
+		integrity="sha512-EU3kpk87ds2lRX32cej+GF3cUlVFn0WWO8SvqpYL0XVLVGbNdzMxjBqd5aexFAUON0pmwi0qiuNzxJKatRKuag=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+		integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,100&display=swap"
+		rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body style="font-family: 'Poppins', sans-serif;">
+	<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+		<div class="container-fluid">
+			<div class="align-text-bottom"><span id="logo--name--nav"><a class="navbar-brand" href="home.html"><i
+							class="fa-solid fa-draw-polygon" id="logo_nav"></i>
+						StudyBuddy</a></span></div>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<!-- NOT LOGGED IN -->
+					<!-- <li class="nav-item d-inline-flex align-items-center"><a class="nav-link fs-6" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="assets/avatar.svg"
+						alt="profile
+							photo" style="width: 35px; border-radius: 50%; border: 1px solid #ccc; margin:0;" class=""><span
+						id="user_nav"><a href="login.html" style="color:var(--color-intense); text-decoration: none;">Log In <i class="bi bi-arrow-bar-right"></i></a> </span>
+						</a>	
+					</li> -->
+
+					<!-- WHEN IS LOGGED IN -->
+					<li class="nav-item dropdown d-inline-flex align-items-center"><a class="nav-link dropdown-toggle fs-6" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="https://media.gettyimages.com/photos/side-portrait-of-a-dark-skinned-male-picture-id528770237?k=20&m=528770237&s=612x612&w=0&h=8kLmwg3YZyNWVjD_oXJlnpiRlhwY6nORT33VqQyjxuw="
+								alt="profile
+									photo" style="width: 35px; border-radius: 50%; border: 1px solid #ccc;" class="mx-2"><span
+								id="user_nav">john</span> 
+							 
+						</a>
+						<ul class="dropdown-menu bg-dark dropdown-menu-dark" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="profile.html"><i class="fa-solid
+											fa-address-card"></i> Profile</a></li>
+							<li><a class="dropdown-item" href="settings.html"><i class="fa-solid fa-gear"></i>
+									Settings</a></li>
+							<li><a class="dropdown-item" href="#"><i class="fa-solid
+											fa-arrow-right-from-bracket"></i>
+									LogOut</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<form class="d-flex">
+					<input class="form-control me-2 mx-2" type="search" placeholder="Search" aria-label="Search">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center">
+        <div class="container-fluid mt-5">
+            <form action="" class="d-flex justify-content-center">
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-2" style=" color: var(--color-intense);">LOGIN</span>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="text-center mb-4" style="color: var(--color-light);">Sign Up Now!</h6>
+
+                        <form action="">
+
+                            <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">Full Name</label>
+                            <input type="text" name="fullname" placeholder="fullname..." class="form-control mb-5"
+                                id="username--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">Username</label>
+                            <input type="text" name="username" placeholder="username..." class="form-control mb-5"
+                                id="username--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">Password</label>
+                            <input type="password" name="password" placeholder="password..." class="form-control mb-5"
+                                id="username--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">Confirm Password</label>
+                            <input type="password" name="confirm_password" placeholder="repeat password..." class="form-control "
+                                id="password--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <input type="submit" value="Submit" class="btn mt-4 btn-outline-light ">
+
+                        </form>
+                        <br>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="row text-center">
+                                    <span class="fs-6" style="color: var(--color-intense);">Don't have an account?</span>
+                                </div>
+                                <div class="row text-center">
+                                    <a href="#" style="text-decoration:none; color: #ccc;"><span class="fs-3" >Sign Up</span></a>
+                                </div>
+                            </div>
+                        </div>
+                            
+
+                        
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>P

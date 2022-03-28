@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+    <style>
+        #form_update>div>input{
+            color: var(--color-intense);
+            background: var(--color-light);
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #form_update>div>select{
+            color: var(--color-intense);
+            background: var(--color-light);
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #form_update>div>textarea{
+            color: var(--color-intense);
+            background: var(--color-light);
+
+            padding: 6px;
+            border-radius: 7px;
+            border: none;
+            width: 100%;
+        }
+    </style>
+
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center align-items-center">
+        <div class="container-fluid mt-5">
+            <span class="d-flex justify-content-center">
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-5" style=" color: var(--color-intense);">Modifica Profilul</span>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="" method="POST" enctype="multipart/form-data" id="form--update">
+                            {% csrf_token %}
+                            <div class="settings--avatar">
+                                <div class="" >
+                                  <img src="{{request.user.profile.url}}" style="border-radius: 50%; width: 100px;"/>
+                                </div>
+                            </div>
+                            {% for field in form %}
+                            <div class="mb-4" id="form_update">
+                                <label for="" style="font-weight: 400; color: var(--color-light);" class="mb-1">{{field.label}}</label>
+                                <div></div>
+                                <div class="mt-2">{{field}}</div>
+                                
+                            </div>
+                            {% endfor %}
+                             
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn mt-4 btn-outline-light" type="submit">Modifica</button>
+                                <a class="btn btn-outline-dark" href="{% url 'profile' user.id %}">Inapoi</a>
+                            </div>
+                        </form>
+                        <br>
+                       
+                    </div>
+                </div>
+
+            </span>
+        </div>
+    </main>
+{% endblock content %}

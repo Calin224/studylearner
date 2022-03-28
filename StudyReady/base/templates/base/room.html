@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+
+{% block content %}
+	<div class="bg-light" style="height: 1px;"></div>
+
+	<main>
+		<div class="container w-75 mt-3">
+			<div class="row d-flex align-items-center" id="title_row_room">
+				<div class="col"><span id="title_room"> <a href="{{ request.META.HTTP_REFERER }}"
+							style="text-decoration: none; color: black;"><i class="fa-solid fa-arrow-left-long"></i>
+						inapoi</a></span></div>
+
+				<div class="col text-start"><span id="time_room">{{room.created|timesince}}</span></div>
+			</div>
+		</div>
+		<div class="container w-75 bg-dark mt-4" id="room_container" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+			<div class="wrapper container w-100">
+				<div class="row">
+					<div class="col text-light p-4" style="overflow: auto; ">
+						<div class="room_datails" style="overflow: auto; height: 200px;">
+							<div class="title d-flex justify-content-between">
+								<h1 class="fs-2" style="color: var(--color-intense);"><span></span> {{room.name}}</h1>
+								{% if request.user == room.host %}
+								
+								{% endif %}
+							</div>
+							
+							<h2> <span class="fs-6"> Creat de:</span> <a href="#" style="text-decoration: underline; color:var(--color-light);"><span class="fs-6">{{room.host.username}}</span></a> </h2><br>
+							<p class="fs-6">{{room.description}}</p>
+	
+						</div>
+						
+						<div id="card_comments" class="mt-5 card w-100 text-dark " style="overflow: auto; background-color:var(--color-darker);">
+							<div class="card-header">
+								<div class="">
+									{% if request.user.is_authenticated %}
+									<form action="#" method="post">
+										{% csrf_token %}
+										<input name="body" placeholder="Adaugati un comentariu..." class="w-100 form-control" style="background-color: var(--color-intense); color: var(--color-darker);"/>
+									</form>
+									{% endif %}
+								
+								</div>
+								
+							</div>
+							<div class="card-body" style="background-color: #2D2D38; border: none;">
+								<!-- comment start -->
+								{% for message in recent_messages %}
+								<div class="wrapper w-100 text-light" id="comment">
+									
+									<div class="">
+										<img src="{{message.user.profile.url}}"
+										alt="" id="user_image_comment">
+										<span  id="comment-user-name" class="fs-6">@{{message.user.username}}</span> 
+										{% if request.user == message.user %}
+										<span><a href="{% url 'delete-message' message.id %}" style="text-decoration:none; color: var(--color-intense);" class="mx-3"><i class="fa-solid fa-trash"></i></a></span>
+										{% endif %}
+									</div>
+									<h6 class="card-text mt-3 ">{{message.body}}</h6>
+								</div>
+								<!-- comment end -->
+								{% endfor %}
+							</div>							
+						</div>
+					</div>
+					<div class="col-2 text-dark p-3 px-4 m-3" style="background-color: var(--color-light);"
+						id="participants">
+						<div class="row text-start mb-5">
+							<p style="margin: 0;">Participanti</p>
+							{% if participants.all.count == 1 %}
+							<span class="opacity-50"><span style="color: black;">{{participants.all.count}}</span> s-a alaturat</span>
+							{% else %}
+							<span class="opacity-50">{{participants.all.count}} s-au alaturat</span>
+							{% endif %}
+						</div>
+						<div class="wrapper mt-4 w-100">
+							{% for participant in participants %}
+							<div class="row d-flex justify-content-end mb-3" style="color: var(--color-intense);">
+								@{{participant.username}}
+							</div>
+							{% endfor %}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock content %}

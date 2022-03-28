@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="bg-light" style="height: 1px;"></div>
+
+    <main class="d-flex justify-content-center">
+        <div class="container-fluid mt-5">
+            <form action="" class="d-flex justify-content-center">
+
+                <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+                    <div class="card-header text-center">
+                        <span class="fs-2" style=" color: var(--color-intense);">Cauta Subiecte</span>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="" class=" d-flex justify-content-center">
+
+
+                            <input type="text" name="q" placeholder="cauta subiecte..." class="form-control mb-5"
+                                id="username--login" style="background-color: transparent; color: var(--color-intense);">
+
+                            <div class="contaier mx-3">
+
+                                <div class="row p-3 rounded mb-3" style="background-color: var(--color-intense);">
+                                    <div class="col text-end"><a href="{% url 'topics' %}" style="text-decoration: none; color: var(--color-darker);">Toate Subiectele</a></div>
+                                    <div class="col text-start">{{topics.count}}</div>
+                                </div>
+
+                                {% for topic in topics %}
+                                <div class="row p-3 rounded mb-3" style="background-color: var(--color-intense);">
+                                    <div class="col text-end"><a href="{% url 'home' %}?q={{topic.name}}" style="text-decoration: none; color: var(--color-dark-blue);">{{topic.name}}</a></div>
+                                    <div class="col text-start">{{topic.room_set.all.count}}</div>
+                                </div>
+                                {% endfor %}
+                                    
+                            </div>
+                        </form>
+                        <br>                    
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+{% endblock content %}

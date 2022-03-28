@@ -1,0 +1,129 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="bg-light" style="height: 1px;"></div>
+<!-- main start -->
+<div class="wrapper mt-3 w-100">
+   <div class="d-flex justify-content-center">
+      <a class="btn btn-outline-dark mx-3" id="action_buttons--home" href="{% url 'topics' %}">CAUTA SUBIECTE</a> 
+      <a class="btn btn-outline-dark" id="action_buttons--home" href="{% url 'activity' %}">MESAJE RECENTE</a>
+   </div>
+</div>
+<main id="main--home" class=" d-flex justify-content-center align-items-center">
+   <div class="grid container-fluid">
+      <div class="contaier row">
+
+         <!-- topics start -->
+
+         <div class="col-2 d-none d-xl-block"> 
+            <h2 class="fs-5 mt-4 mb-5 opacity-75"><span id="title--browse">Cauta subiecte</span></h2>
+            <div class="wrappper">
+               
+               {% for topic in topics %}
+               
+               <div class="row mb-5" id="browse_section">
+                  <div class="col fs-6">
+                     <a class="fs-6" id="topic--name" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+                  </div>
+                  <div class="" style="max-width: 50px;">
+                     <span id="room_count" class="fs-6">{{topic.room_set.all.count}}</span>
+                  </div>
+               </div>
+               {% endfor %}
+               <div class="col fs-6" style="color:var(--color-light);">
+                  <span class="fs-6"><a href="{% url 'topics' %}" style="text-decoration: none; color: var(--color-darker);">Mai Multe Subiecte</a></span>
+               </div>
+            </div>
+         </div>
+         <!-- topics end -->
+
+
+         <div class="col-1" id="col--1"></div>
+
+
+         <!-- rooms start -->
+         <div class="col d-sm-col-10 mb-5">
+            <div class="wrapper w-100" style="height: 100vh;">
+               <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-center">
+                     <div class="group">
+                        <h2 class="opacity-100"><span class="fs-5" id="title--study">Subiecte de interes</span></h2>
+                        <h6 class="fs-6 mb-3 opacity-50 text-dark"><small>{{room_count}} camere disponibile</small></h6>
+                     </div>
+                     <div class="button">
+                        <a href="{% url 'create-room' %}" class="btn btn-outline-dark">Incepe o dezbatere</a>
+                     </div>
+                  </div>
+               </div>
+               {% for room in rooms %}
+               <div class="card mb-5" id="ca d--message" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; background-color: var(--color-light);">
+                  <div class="card-header">
+                     <div class="wrappper d-flex justify-content-between">
+                        <div class="">
+                           <small id="user--name"><img src="{{room.host.profile.url}}" alt="profile photo" style="width: 35px; height:35px ;  border-radius: 50%; border: 1px solid #ccc;" class="mx-2"> <a href="{% url 'profile' room.host.id %}" style="text-decoration: none; color: black;">@{{room.host.username}}</a></small>
+                        </div>
+                        <div class="">
+                           <small style="color: var(--color-black);">{{ room.created | timesince }}</small>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <h5 class="card-title mt-3 fs-3 d-sm-fs-5"><a href="{% url 'room' room.id %}" style="text-decoration: none; color: black;" id="title_link_a_home">{{room.name}}</a></h5>
+                     <h6><a href="{% url 'room' room.id %}" style="text-decoration:none; color: black;">{{room.description}}</a></h6>
+                  </div>
+                  <div class="card-footer w-100">
+                     <div class="wrapper d-flex justify-content-between w-100">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                        <small class="text-light">
+                        {% if room.participants.all.count == 1 %}
+                        <span style="color:var(--color-black);">{{room.participants.all.count}} participant</span>
+                        {% else %}
+                        <span style="color:var(--color-black);">{{room.participants.all.count}} participanti</span>
+                        {% endif %}
+                        </small>
+                        </a> 
+                        {% if request.user == room.host or request.user.is_superuser %}
+                        <div class="action" >
+                           <a href="{% url 'update-room' room.id %}" class="text-light mx-3"><i class="fa-solid fa-pen" style="color:var(--color-darker)"></i></a>
+                           <a href="{% url 'delete-room' room.id %}" class="text-light"><i class="fa-solid fa-trash" style="color:var(--color-darker)"></i></a>
+                        </div>
+                        {% endif %}
+                        <button class="btn btn-dark disabled btn-sm rounded-circle">
+                        <small class="text-light">{{room.topic.name}}</small>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+
+         <!-- rooms end -->
+
+         <!-- recent messages start -->
+
+         <div class="col-3 d-none d-xl-block">
+            <div class="">
+               <h2 class="fs-5 mt-4 mb-5 opacity-75 d-flex justify-content-end"><span id="title--recent">Mesaje recente</span></h2>
+               <div class="wrappper">
+                  {% for message in recent_messages %}
+                  <div class="card w-100 mb-4" style="width: 18rem;" id="recent--card">
+                     <div class="card-header d-flex justify-content-between align-items-middle">
+                        <h5 class="card-title text-end"><img src="{{message.user.profile.url}}" alt="profile photo" style="width: 35px; height: 35px;  border-radius: 50%; border: 1px solid #ccc; margin-right: 7px;"><a href="{% url 'profile' message.user.id %}" style="text-decoration:none; color: black; vertical-align: middle;">@{{message.user.username}} </a> </h5>
+                        <small>{{message.created|timesince}}</small>
+                     </div>
+                     <div class="card-body">
+                        <h6 class="card-text mb-4 text-end">a reactionat in <a href="{% url 'room' message.room.id %}" style="text-decoration:none ; color: var(--color-darker);">"{{message.room.name}}" </a></h6>
+                        <a href="{% url 'room' message.room.id %}" id="message--a"><span class="bg-dark" id="message">{{message}}</span></a>
+                     </div>
+                  </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+
+         <!-- recent messages end -->
+
+      </div>
+   </div>
+</main>
+{% endblock content %}

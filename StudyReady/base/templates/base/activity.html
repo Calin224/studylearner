@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="bg-light" style="height: 1px;"></div>
+<main class="d-flex justify-content-center">
+   <div class="container-fluid mt-5">
+      <form action="" class="d-flex justify-content-center">
+         <div class="card"  id="login--card" style="background-color: var(--color-dark-blue);">
+            <div class="card-header text-center d-flex align-items-center justify-content-center">
+               <span class="fs-2" style=" color: var(--color-intense);">Mesaje Recente</span>
+            </div>
+            <div class="card-body">
+               <!-- card start -->
+               {% for message in recent_messages  %}
+               <div class="card w-100 mb-4" style="width: 18rem;" id="recent--card">
+                  <div class="card-header">
+                     <h5 class="card-title text-end"><img src="{{message.user.profile.url}}" alt="profile photo" style="width: 35px; height: 35px; border-radius: 50%; border: 1px solid #ccc; margin-right: 4px;">{{message.user.username}}</h5>
+                  </div>
+                  <div class="card-body">
+                     <h6 class="card-text mb-4 text-end">a reactionat in <a href="{% url 'room' message.room.id %}" style="text-decoration:none; color:var(--color-darker);">"{{message.room.name}}"</a></h6>
+                     <a href="{% url 'room' message.room.id %}" style="text-decoration:none; color:var(--color-intense)">
+                     <span class="bg-dark" id="message">
+                     {{message.body}}
+                     </span>
+                     </a>
+                  </div>
+               </div>
+               {% endfor %}
+               <!-- card end -->
+            </div>
+         </div>
+      </form>
+   </div>
+</main>
+{% endblock %}
